@@ -233,9 +233,8 @@ class XmlLoader(loader.Loader):
             # load is the default command            
             cmd = cmd or 'load'
             value = _get_text(tag)
-            if subst_value:
-                value = self.resolve_args(value, context)
-            self.load_rosparam(context, ros_config, cmd, param, file, value, verbose=verbose)
+            self.load_rosparam(context, ros_config, cmd, param, file, value,
+                               subst_value, verbose=verbose)
 
         except ValueError as e:
             raise loader.LoadException("error loading <rosparam> tag: \n\t"+str(e)+"\nXML is %s"%tag.toxml())
