@@ -2,6 +2,37 @@
 Changelog for package roslaunch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.14 (2018-08-23)
+--------------------
+* fix "pass_all_args" for roslaunch-check, add nosetest (`#1368 <https://github.com/ros/ros_comm/issues/1368>`_)
+* add substitution when loading yaml files (`#1354 <https://github.com/ros/ros_comm/issues/1354>`_)
+
+1.12.13 (2018-02-21)
+--------------------
+* add process listeners to XML RPC server (`#1319 <https://github.com/ros/ros_comm/issues/1319>`_)
+* make master process explicitly 'required' for parent launch (`#1228 <https://github.com/ros/ros_comm/issues/1228>`_)
+
+1.12.12 (2017-11-16)
+--------------------
+
+1.12.11 (2017-11-07)
+--------------------
+
+1.12.10 (2017-11-06)
+--------------------
+
+1.12.9 (2017-11-06)
+-------------------
+
+1.12.8 (2017-11-06)
+-------------------
+* fix parameter leaking into sibling scopes (`#1158 <https://github.com/ros/ros_comm/issues/1158>`_)
+* remove mention of rosmake from error message (`#1140 <https://github.com/ros/ros_comm/issues/1140>`_)
+* only launch core nodes if master was launched by roslaunch (`#1098 <https://github.com/ros/ros_comm/pull/1098>`_)
+* ensure pid file is removed on exit (`#1057 <https://github.com/ros/ros_comm/pull/1057>`_, `#1084 <https://github.com/ros/ros_comm/pull/1084>`_)
+* ensure cwd exists (`#1031 <https://github.com/ros/ros_comm/pull/1031>`_)
+* respect if/unless for roslaunch-check (`#998 <https://github.com/ros/ros_comm/pull/998>`_)
+
 1.12.7 (2017-02-17)
 -------------------
 * improve error message for invalid tags (`#989 <https://github.com/ros/ros_comm/pull/989>`_)

@@ -2,6 +2,31 @@
 Changelog for package xmlrpcpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.14 (2018-08-23)
+--------------------
+* take XmlRpcValue by *const* ref. in operator<< (`#1350 <https://github.com/ros/ros_comm/issues/1350>`_)
+
+1.12.13 (2018-02-21)
+--------------------
+* fix xmlrpc timeout using monotonic clock (`#1249 <https://github.com/ros/ros_comm/issues/1249>`_)
+* make xmlrpcpp specific include directory work in devel space (`#1261 <https://github.com/ros/ros_comm/issues/1261>`_)
+
+1.12.12 (2017-11-16)
+--------------------
+
+1.12.11 (2017-11-07)
+--------------------
+
+1.12.10 (2017-11-06)
+--------------------
+
+1.12.9 (2017-11-06)
+-------------------
+
+1.12.8 (2017-11-06)
+-------------------
+* use poll() in favor of select() in the XmlRPCDispatcher (`#833 <https://github.com/ros/ros_comm/issues/833>`_)
+
 1.12.7 (2017-02-17)
 -------------------
 * move headers to include/xmlrpcpp (`#962 <https://github.com/ros/ros_comm/issues/962>`_)

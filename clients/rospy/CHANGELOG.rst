@@ -2,6 +2,35 @@
 Changelog for package rospy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.14 (2018-08-23)
+--------------------
+* fix some errors in some probably not frequented code paths (`#1415 <https://github.com/ros/ros_comm/issues/1415>`_)
+* fix thread problem with get_topics() (`#1416 <https://github.com/ros/ros_comm/issues/1416>`_)
+
+1.12.13 (2018-02-21)
+--------------------
+* raise the correct exception from AnyMsg.serialize (`#1311 <https://github.com/ros/ros_comm/issues/1311>`_)
+
+1.12.12 (2017-11-16)
+--------------------
+
+1.12.11 (2017-11-07)
+--------------------
+
+1.12.10 (2017-11-06)
+--------------------
+
+1.12.9 (2017-11-06)
+-------------------
+
+1.12.8 (2017-11-06)
+-------------------
+* change rospy.Rate hz type from int to float (`#1177 <https://github.com/ros/ros_comm/issues/1177>`_)
+* improve rospy.logXXX_throttle performance (`#1091 <https://github.com/ros/ros_comm/pull/1091>`_)
+* add option to reset timer when time moved backwards (`#1083 <https://github.com/ros/ros_comm/issues/1083>`_)
+* abort topic lookup on connection refused (`#1044 <https://github.com/ros/ros_comm/pull/1044>`_)
+* sleep in rospy wait_for_service even if exceptions raised (`#1025 <https://github.com/ros/ros_comm/pull/1025>`_)
+
 1.12.7 (2017-02-17)
 -------------------
 * make get_published_topics threadsafe (`#958 <https://github.com/ros/ros_comm/issues/958>`_)

@@ -2,6 +2,30 @@
 Changelog for package topic_tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.14 (2018-08-23)
+--------------------
+* check that output topic is valid in demux (`#1367 <https://github.com/ros/ros_comm/issues/1367>`_)
+
+1.12.13 (2018-02-21)
+--------------------
+* replace deprecated syntax (backticks with repr()) (`#1259 <https://github.com/ros/ros_comm/issues/1259>`_)
+
+1.12.12 (2017-11-16)
+--------------------
+
+1.12.11 (2017-11-07)
+--------------------
+
+1.12.10 (2017-11-06)
+--------------------
+
+1.12.9 (2017-11-06)
+-------------------
+
+1.12.8 (2017-11-06)
+-------------------
+* make demux more agile (`#1196 <https://github.com/ros/ros_comm/issues/1196>`_)
+
 1.12.7 (2017-02-17)
 -------------------
 

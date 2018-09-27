@@ -233,9 +233,10 @@ class XmlLoader(loader.Loader):
             # load is the default command            
             cmd = cmd or 'load'
             value = _get_text(tag)
+            subst_function = None
             if subst_value:
-                value = self.resolve_args(value, context)
-            self.load_rosparam(context, ros_config, cmd, param, file, value, verbose=verbose)
+                subst_function = lambda x: self.resolve_args(x, context)
+            self.load_rosparam(context, ros_config, cmd, param, file, value, verbose=verbose, subst_function=subst_function)
 
         except ValueError as e:
             raise loader.LoadException("error loading <rosparam> tag: \n\t"+str(e)+"\nXML is %s"%tag.toxml())
@@ -368,6 +369,7 @@ class XmlLoader(loader.Loader):
                     
             child_ns = self._ns_clear_params_attr('node', tag, context, ros_config, node_name=name)
             param_ns = child_ns.child(name)
+            param_ns.params = [] # This is necessary because child() does not make a copy of the param list.
                 
             # required attributes
             pkg, node_type = self.reqd_attrs(tag, context, ('pkg', 'type'))
@@ -647,6 +649,7 @@ class XmlLoader(loader.Loader):
                 if ifunless_test(self, tag, context):
                     self._check_attrs(tag, context, ros_config, XmlLoader.GROUP_ATTRS)
                     child_ns = self._ns_clear_params_attr(name, tag, context, ros_config)
+                    child_ns.params = list(child_ns.params) # copy is needed here to enclose new params
                     default_machine = \
                         self._recurse_load(ros_config, tag.childNodes, child_ns, \
                                                default_machine, is_core, verbose)
