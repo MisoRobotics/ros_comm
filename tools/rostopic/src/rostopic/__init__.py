@@ -1946,7 +1946,7 @@ def stdin_publish(pub, msg_class, rate, once, filename, verbose):
                 # be good to reorganize this code more conceptually
                 # but, for now, this is the best re-use of the
                 # underlying methods.
-                publish_message(pub, msg_class, pub_args, None, bool(r) or once, verbose=verbose)
+                publish_message(pub, msg_class, pub_args, rate, bool(r) or once, verbose=verbose)
             except ValueError as e:
                 sys.stderr.write("%s\n"%str(e))
                 break
