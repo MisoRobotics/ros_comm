@@ -291,7 +291,7 @@ def rosnode_listnodes(namespace=None, list_uri=False, list_all=False):
     """
     print(_sub_rosnode_listnodes(namespace=namespace, list_uri=list_uri, list_all=list_all))
     
-def rosnode_ping(node_name, max_count=None, verbose=False):
+def rosnode_ping(node_name, max_count=None, verbose=False, skip_cache=False):
     """
     Test connectivity to node by calling its XMLRPC API
     @param node_name: name of node to ping
@@ -300,12 +300,14 @@ def rosnode_ping(node_name, max_count=None, verbose=False):
     @type  max_count: int
     @param verbose: print ping information to screen
     @type  verbose: bool
+    @param skip_cache: flag to skip cached data and force to lookup from master
+    @type  skip_cache: bool
     @return: True if node pinged
     @rtype: bool
     @raise ROSNodeIOException: if unable to communicate with master
     """
     master = rosgraph.Master(ID)
-    node_api = get_api_uri(master,node_name)
+    node_api = get_api_uri(master, node_name, skip_cache=skip_cache)
     if not node_api:
         print("cannot ping [%s]: unknown node"%node_name, file=sys.stderr)
         return False
@@ -333,6 +335,9 @@ def rosnode_ping(node_name, max_count=None, verbose=False):
                 if verbose:
                     print("xmlrpc reply from %s\ttime=%fms"%(node_api, dur))
                 # 1s between pings
+            except socket.timeout:
+                print("connection to [%s] timed out"%node_name, file=sys.stderr)
+                return False
             except socket.error as e:
                 # 3786: catch ValueError on unpack as socket.error is not always a tuple
                 try:
@@ -355,7 +360,7 @@ def rosnode_ping(node_name, max_count=None, verbose=False):
                             continue
                         print("ERROR: connection refused to [%s]"%(node_api), file=sys.stderr)
                     else:
-                        print("connection to [%s] timed out"%node_name, file=sys.stderr)
+                        print("connection to [%s] failed"%node_name, file=sys.stderr)
                     return False
                 except ValueError:
                     print("unknown network error contacting node: %s"%(str(e)))
@@ -369,7 +374,7 @@ def rosnode_ping(node_name, max_count=None, verbose=False):
         print("ping average: %fms"%(acc/count))
     return True
 
-def rosnode_ping_all(verbose=False):
+def rosnode_ping_all(verbose=False, skip_cache=False):
     """
     Ping all running nodes
     @return [str], [str]: pinged nodes, un-pingable nodes
@@ -391,7 +396,7 @@ def rosnode_ping_all(verbose=False):
     pinged = []
     unpinged = []
     for node in nodes:
-        if rosnode_ping(node, max_count=1, verbose=verbose):
+        if rosnode_ping(node, max_count=1, verbose=verbose, skip_cache=skip_cache):
             pinged.append(node)
         else:
             unpinged.append(node)
@@ -399,7 +404,7 @@ def rosnode_ping_all(verbose=False):
     
 def cleanup_master_blacklist(master, blacklist):
     """
-    Remove registrations from ROS Master that match blacklist.    
+    Remove registrations from ROS Master and node cache (_caller_apis) that match blacklist.    
     @param master: rosgraph Master instance
     @type  master: rosgraph.Master
     @param blacklist: list of nodes to scrub
@@ -422,6 +427,7 @@ def cleanup_master_blacklist(master, blacklist):
                 service_api = master.lookupService(s)
                 master_n = rosgraph.Master(n)
                 master_n.unregisterService(s, service_api)
+        _caller_apis.pop(n, None)
 
 def cleanup_master_whitelist(master, whitelist):
     """

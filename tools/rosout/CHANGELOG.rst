@@ -2,6 +2,18 @@
 Changelog for package rosout
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.17 (2020-10-26)
+--------------------
+* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
+* Contributors: Jacob Perron, Shane Loretz
+
+1.12.16 (2020-08-26)
+--------------------
+
+1.12.15 (2020-08-10)
+--------------------
+* fix use-after-free issue in rosout (`#1764 <https://github.com/ros/ros_comm/issues/1764>`_)
+
 1.12.14 (2018-08-23)
 --------------------
 

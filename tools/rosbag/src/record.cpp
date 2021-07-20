@@ -36,6 +36,7 @@
 #include "rosbag/exceptions.h"
 
 #include "boost/program_options.hpp"
+#include <signal.h>
 #include <string>
 #include <sstream>
 
@@ -123,7 +124,7 @@ rosbag::RecorderOptions parseOptions(int argc, char** argv) {
         ROS_WARN("Use of \"--split <MAX_SIZE>\" has been deprecated.  Please use --split --size <MAX_SIZE> or --split --duration <MAX_DURATION>");
         if (S < 0)
           throw ros::Exception("Split size must be 0 or positive");
-        opts.max_size = 1048576 * S;
+        opts.max_size = 1048576 * static_cast<uint64_t>(S);
       }
     }
     if(vm.count("max-splits"))
@@ -273,8 +274,21 @@ rosbag::RecorderOptions parseOptions(int argc, char** argv) {
     return opts;
 }
 
+/**
+ * Handle SIGTERM to allow the recorder to cleanup by requesting a shutdown.
+ * \param signal
+ */
+void signal_handler(int signal)
+{
+  (void) signal;
+  ros::requestShutdown();
+}
+
 int main(int argc, char** argv) {
     ros::init(argc, argv, "record", ros::init_options::AnonymousName);
+
+    // handle SIGTERM signals
+    signal(SIGTERM, signal_handler);
 
     // Parse the command-line options
     rosbag::RecorderOptions opts;

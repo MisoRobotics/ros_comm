@@ -2,6 +2,24 @@
 Changelog for package rosbag
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.17 (2020-10-26)
+--------------------
+* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
+* Gracefully stop recording upon SIGTERM and SIGINT (`#2038 <https://github.com/ros/ros_comm/issues/2038>`_)
+* Contributors: Devin Bonnie, Jacob Perron, Shane Loretz
+
+1.12.16 (2020-08-26)
+--------------------
+
+1.12.15 (2020-08-10)
+--------------------
+* fix roslib not being imported (`#1818 <https://github.com/ros/ros_comm/issues/1818>`_)
+* remove deadcode (`#1786 <https://github.com/ros/ros_comm/issues/1786>`_)
+* record: fix signed int overflow (`#1741 <https://github.com/ros/ros_comm/issues/1741>`_)
+* fix topic message count for rosbag indexed v1.2 (`#1648 <https://github.com/ros/ros_comm/issues/1648>`_)
+* fix wrong error handling in migration. (`#1639 <https://github.com/ros/ros_comm/issues/1639>`_)
+* fix waitForSubscribers hanging with simtime (`#1543 <https://github.com/ros/ros_comm/issues/1543>`_)
+
 1.12.14 (2018-08-23)
 --------------------
 * add TransportHint options --tcpnodelay and --udp (`#1295 <https://github.com/ros/ros_comm/issues/1295>`_)

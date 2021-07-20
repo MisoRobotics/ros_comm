@@ -2,6 +2,24 @@
 Changelog for package rospy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.12.17 (2020-10-26)
+--------------------
+* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
+* Fix log*_throttle with sim time (`#2044 <https://github.com/ros/ros_comm/issues/2044>`_)
+* Update local parameter cache on set_param (`#2021 <https://github.com/ros/ros_comm/issues/2021>`_)
+* Contributors: Jacob Perron, Markus Grimm, Shane Loretz, salihmarangoz
+
+1.12.16 (2020-08-26)
+--------------------
+
+1.12.15 (2020-08-10)
+--------------------
+* remove not existing NodeProxy from rospy __all_\_ (`#2007 <https://github.com/ros/ros_comm/issues/2007>`_)
+* fix dictionary changed size during iteration (`#1894 <https://github.com/ros/ros_comm/issues/1894>`_)
+* do not raise socket exception during shutdown (`#1720 <https://github.com/ros/ros_comm/issues/1720>`_)
+* add missing comma in the list of strings (`#1760 <https://github.com/ros/ros_comm/issues/1760>`_)
+* fix error handling for Topic constructor (`#1701 <https://github.com/ros/ros_comm/issues/1701>`_)
+
 1.12.14 (2018-08-23)
 --------------------
 * fix some errors in some probably not frequented code paths (`#1415 <https://github.com/ros/ros_comm/issues/1415>`_)
